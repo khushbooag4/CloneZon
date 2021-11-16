@@ -6,7 +6,7 @@ const uri = "mongodb+srv://khushboo123:ukp123@cluster0.cfm7v.mongodb.net/amazond
 //Connection to Database
 const conn = mongoose.connect(uri).then( (err) => {
   try {
-    console.log("MonggoDb connected Yay")
+    console.log("MongoDB Connected")
   } catch (error) {
     console.error(err);
   }

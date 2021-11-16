@@ -4,6 +4,7 @@ import {BrowserRouter as Router , Route , Switch } from 'react-router-dom';
 import SignIn from './components/auth/SignIn';
 import Header from './components/Mainsection/Header';
 import Register from './components/register/Register';
+import Error from './components/Mainsection/Error';
 
 function App() {
   
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/add">
             <RegisterIn />
+          </Route>
+          <Route>
+            <Error />
           </Route>
         </Switch>
     </Router>

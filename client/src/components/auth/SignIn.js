@@ -1,24 +1,45 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './SignIn.css';
 import { Link } from 'react-router-dom';
 
 function SignIn() {
+    const [email,setEmail] = useState('');
+    const [password,setPass] = useState('');
+
+    const handleLogin = async(e) => {
+        e.preventDefault();
+
+        const res = await fetch('/auth', {
+            method : "POST",
+            headers: {
+                "Content-Type": "application/json"
+               },
+               body: JSON.stringify({
+                   "email": email,
+                   "password": password,
+               })
+        });
+        
+    }
     return (
         <div>
             <Link to = '/'><img src="/Images/logo1.jpg" className="logo" alt="" /></Link>
             <div className="container">
-             <div className="details">
+             <form method = "POST" className="details">
                <h1>Sign-In</h1>
                <label htmlFor="textF">Email or mobile phone number</label>
-               <input id="textF" type="email" value="" />
-               <button className="btn">Continue</button>
+               <input id="textF" type="email" value={email} name="email" autoComplete="on" onChange={(e) => setEmail(e.target.value)}/>
+               <label htmlFor="textF1">Enter Password</label>
+               <input id="textF1" type="password" value={password} name="password"
+               onChange={(e) => setPass(e.target.value)} />
+               <button className="btn" onClick={handleLogin}>Continue</button>
                <p>By Continuing, you agree to Amazon's <span>Conditions of Use</span> and <span>Privacy Notice.
                 </span></p>
                <br />
                <Link className="help" href="#">Need help?</Link>
-             </div>
+             </form>
             <hr />
-            <Link to="/register"><button className="account btn" type="submit">Create your Amazon Account</button></Link>
+            <Link to="/add"><button className="account btn" type="submit">Create your Amazon Account</button></Link>
             <hr />
 
             <p>© 1996-2021, Amazon.com, Inc. or its affiliates</p>

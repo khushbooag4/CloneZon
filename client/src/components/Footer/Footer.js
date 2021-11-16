@@ -1,4 +1,5 @@
 import React from 'react';
+import './Footer.css';
 import {Box, Container , Row, Column , Heading, FooterLink} from './FooterStyled';
 
 function Footer() {
@@ -9,8 +10,8 @@ function Footer() {
               <Row>
             <Column>
                 <Heading>Get to Know Us</Heading>
-                <FooterLink href="#">About Us</FooterLink>
-                <FooterLink href="#">Careers</FooterLink>
+                <FooterLink className="link" href="#">About Us</FooterLink>
+                <FooterLink className="link" href="#">Careers</FooterLink>
                 <FooterLink href="#">Press Releases</FooterLink>
                 <FooterLink href="#">Amazon Cares</FooterLink>
                 <FooterLink href="#">Gift a Smile</FooterLink>

@@ -62,3 +62,23 @@ footer{
     width: 100%;
     margin-top: 30px;
 }
+
+/* 404 Error Page */
+.error-container{
+    position: relative;
+    margin: 0 100px;
+    text-align: center;
+}
+.error-container img{
+    width: 150px;
+    height: 150px; 
+    margin-right: 50px;  
+}
+.error-container h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.9rem;
+    color: #E47911;
+}
+.error-container p{
+    font-size: 1.3rem;
+}

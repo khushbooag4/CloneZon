@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const {emailValidate , passwordValidate} = require('../auth/validate');
-const register = require('../auth/register');
-const conn  = require('../db/Database');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
@@ -29,38 +28,46 @@ router.post('/register' , async(req,res) => {
             
             if(userExist){
                 return res.status(401).send("Email exists"); 
-                }
-            const user = new User({username, email , password, confirmpassword});
-            console.log(user);
-            await user.save();
-            
+            }
+            else{
+                const user = new User({username, email , password, confirmpassword});
+                console.log(user);
+                await user.save();
+                res.json("User Added");
+            } 
         } 
         catch (err) {
         console.log(err);
        }   
 })
-
+//Login the user
 router.post('/auth', async(req,res) => {
      console.log(req.body);
      try {
          const { email , password} = req.body;
          if(email && password && emailValidate(email) && passwordValidate(password)){
               const userLogin = await User.findOne({email : email});
-              console.log(userLogin.password);
-              //res.json({message: "User signup Success"})
-              const isMatch = await bcrypt.compare(password, userLogin.password, (err) => {
-                 if (err)
-                     console.error(err);
-                 console.log("Login form Validation");
-             })
-         }
-         else{
-             res.status(401).send("Enter Correct Details")
-         }
-     } catch (err) {
-         console.error(err);
-     }
+              if(userLogin){
+                  const isMatch = await bcrypt.compare(password, userLogin.password);
+                  if(!isMatch){ 
+                    res.status(200).send("Enter Correct Login Details");
+                  }
+                  //Token for JWT
+                //   jwt.sign({userLogin} , 'secretKey', (err,token) => {
+                //       res.json({token});
+                //   })
 
+                 const token = userLogin.generateAuthToken();
+                 res.cookie("jwttoken" , token , {
+                    //  expires = new Date(Date.now() + 2798000000),
+                     httpOnly : true
+                 });
+                console.log({message: "User signup Success"});
+              }else{
+             res.status(401).send("Login Details Not Exists");
+             res.json("Not Validated");
+         }}
+    }catch (err) { console.error(err); }
 });
 
 router.get('/details',(req,res) => {
@@ -69,6 +76,17 @@ router.get('/details',(req,res) => {
 
 router.get('/validate',(req,res) => {
     res.send('Router')
+});
+
+//Logout Delte the account from the database
+//@route DELELTE
+//@desc /register:id //name //password
+router.delete('/register/:id',(req,res) => {
+    User.findById(req.params.id)
+    .then(user => user.remove().then( () => {
+        res.json("Account Successfully Deleted")
+    }))
+    .catch(err => res.status(404).json("Invalid Id"))
 });
 
 

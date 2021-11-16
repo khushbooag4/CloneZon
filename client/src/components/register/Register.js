@@ -30,7 +30,7 @@ function Register() {
             "username" : name,
             "email": email,
             "password": password,
-            "confirmpassowrd":confirmpassword
+            "confirmpassword":confirmpassword
         })
       });
       const data = await res.json;
