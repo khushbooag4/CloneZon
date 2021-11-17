@@ -4,8 +4,9 @@ import {Box, Container , Row, Column , Heading, FooterLink} from './FooterStyled
 
 function Footer() {
     return (
+        <>
+        <section className="footer">
         <Box style={{color:'#fff'}}>
-          
           <Container>
               <Row>
             <Column>
@@ -37,12 +38,11 @@ function Footer() {
                 <FooterLink href="#">100% Purchase Protection</FooterLink>
                 <FooterLink href="#">Amazon App Download</FooterLink>
                 <FooterLink href="#">Help</FooterLink>
-               </Column>
-
-               
-               </Row>
+               </Column></Row>
             </Container>
         </Box>
+        </section>
+        </>
     );
 }
 

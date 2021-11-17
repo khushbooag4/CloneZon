@@ -41,10 +41,10 @@ router.post('/register' , async(req,res) => {
        }   
 })
 //Login the user
-router.post('/auth', async(req,res) => {
+router.post('/login', async(req,res) => {
      console.log(req.body);
      try {
-         const { email , password} = req.body;
+         const { email , password } = req.body;
          if(email && password && emailValidate(email) && passwordValidate(password)){
               const userLogin = await User.findOne({email : email});
               if(userLogin){
@@ -53,16 +53,15 @@ router.post('/auth', async(req,res) => {
                     res.status(200).send("Enter Correct Login Details");
                   }
                   //Token for JWT
-                //   jwt.sign({userLogin} , 'secretKey', (err,token) => {
-                //       res.json({token});
-                //   })
-
-                 const token = userLogin.generateAuthToken();
+                  const token = jwt.sign({userLogin} , 'secretKey', (err,token) => {
+                      console.log({token : token});
+                  })
                  res.cookie("jwttoken" , token , {
                     //  expires = new Date(Date.now() + 2798000000),
                      httpOnly : true
                  });
                 console.log({message: "User signup Success"});
+                res.redirect('/')
               }else{
              res.status(401).send("Login Details Not Exists");
              res.json("Not Validated");

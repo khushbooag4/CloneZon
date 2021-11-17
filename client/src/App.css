@@ -2,13 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  position: relative;
 }
 .header{
   margin: 0;
   padding: 0;
 }
-.footer{
+footer{
+  position: relative;
   background: #232f3e;
   color: #fff;
   display: block;

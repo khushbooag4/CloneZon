@@ -1,26 +1,37 @@
 import React,{useState} from 'react';
 import './SignIn.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 
 function SignIn() {
+    const history = useHistory();
     const [email,setEmail] = useState('');
     const [password,setPass] = useState('');
 
     const handleLogin = async(e) => {
         e.preventDefault();
-
-        const res = await fetch('/auth', {
-            method : "POST",
-            headers: {
-                "Content-Type": "application/json"
-               },
-               body: JSON.stringify({
-                   "email": email,
-                   "password": password,
-               })
-        });
         
-    }
+        const res = await fetch("/register",{
+          method : "POST",
+          headers: {
+           "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              "email": email,
+              "password": password,
+          })
+        });
+        const data = await res.json;
+        if(data.status === 401 || !data){
+          window.alert("User Successfully NOT Registered");
+          console.log("Invalid")
+        }
+        else{
+          window.alert("Login Successfully");
+          console.log("Invalid")
+  
+          history.push("/");
+        }
+      };
     return (
         <div>
             <Link to = '/'><img src="/Images/logo1.jpg" className="logo" alt="" /></Link>
