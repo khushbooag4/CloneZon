@@ -4,7 +4,10 @@ const path = require('path')
 const dotenv = require('dotenv');
 
 const app = express()
-const port = 5000 || process.env.PORT
+let port = process.env.PORT;
+if(port == null || port == ""){
+    port = 5000;
+}
 //MongoDb connection
 conn;
 
