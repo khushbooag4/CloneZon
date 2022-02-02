@@ -16,7 +16,7 @@ router.post('/register' , async(req,res) => {
             typeof password === 'string' &&
             typeof confirmpassword === 'string' &&
              email.length > 0 &&
-             password.length > 8 &&
+             password.length > 6 &&
              confirmpassword === password &&
              emailValidate(email) &&
              passwordValidate(password) )
