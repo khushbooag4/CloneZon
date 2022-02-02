@@ -1,15 +1,12 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
+try {
+    mongoose.connect(process.env.DATABASE_URL);
 
-const uri = "mongodb+srv://khushboo123:ukp123@cluster0.cfm7v.mongodb.net/amazondb?retryWrites=true&w=majority";
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+} catch (error) {
+    console.log(error);
+}
 
-//Connection to Database
-const conn = mongoose.connect(uri).then( (err) => {
-  try {
-    console.log("MongoDB Connected")
-  } catch (error) {
-    console.error(err);
-  }
-})
-
-module.exports = conn;
+module.exports = mongoose;

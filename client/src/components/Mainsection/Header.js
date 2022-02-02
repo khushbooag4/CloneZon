@@ -5,6 +5,7 @@ import './Header.css';
 import CarouselSlider from '../utils/Carousel';
 import Footer from '../Footer/Footer'
 import { Link } from 'react-router-dom';
+import Slider from '../utils/Slider';
 
 function Header() {
     const data = [
@@ -83,8 +84,10 @@ function Header() {
                </div>
             </div>
             </Card>
+            <Slider />
             {/* Scrollable Carousel */}
             <img src="/Images/middle.jpg" alt="" className="middle-img" />
+            
             <CarouselSlider />
             <br />
             <br />

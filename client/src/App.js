@@ -1,16 +1,19 @@
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
+import React, { Suspense } from 'react'
 import {BrowserRouter as Router , Route , Switch } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
 import SignIn from './components/auth/SignIn';
-import Header from './components/Mainsection/Header';
 import Register from './components/register/Register';
-import Footer  from './components/Footer/Footer';
 import ScrollButton from './components/utils/ScrollButton';
 import Error from './components/Mainsection/Error';
+import Newsletter from './components/utils/NewsLetter';
+import './App.css';
+
+const Header = React.lazy( () => import("./components/Mainsection/Header"))
+
+
 
 function App() {
-  
-  return (
+   return (
   
 <Router>
       <Switch>
@@ -19,9 +22,11 @@ function App() {
            </Route>
           <Route path="/auth" exact={true} component= {SignIn} />
           <Route path="/add" exact={true} component = {Register} />
+          {/* <Route exact path= "/slider" component={Products} /> */}
           <Route exact = {true} component={Error} />
+          
          </Switch>
-         {/* <footer><Footer /></footer> */}
+        
          <ScrollButton />
     </Router>
     
@@ -32,24 +37,11 @@ function Home() {
     <div>
       <Navbar />
        <div className="header">
-           <Header />
+           <Suspense fallback={ <div>Loading....</div>}>
+               <Header />
+           </Suspense>
        </div>
       </div>
-  );
-}
-
-function About() {
-  return (
-    <>
-     <h1><center>This is a Amazon Clone</center></h1>
-    </>
-  );
-}
-function RegisterIn() {
-  return (
-    <>
-    <Register />
-    </>
   );
 }
 
