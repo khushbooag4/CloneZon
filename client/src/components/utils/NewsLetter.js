@@ -1,4 +1,4 @@
-import { Send } from "@material-ui/icons";
+import { AiOutlineSend } from "react-icons/ai";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -50,7 +50,7 @@ const Newsletter = () => {
       <InputContainer>
         <Input placeholder="Your email" />
         <Button>
-          <Send />
+          <AiOutlineSend />
         </Button>
       </InputContainer>
     </Container>

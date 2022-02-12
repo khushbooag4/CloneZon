@@ -11,21 +11,12 @@ function Navbar() {
               <Link to='/'>
                 <img src="/Images/logo.jpg" alt="" className="nav-logo"/>
               </Link>
-              <div>
-                  <div className="location">
-                     <i className="fas fa-map-marker-alt fa-lg"></i>
-                     <div>
-                     <span className="subtext">Hello</span>
-                     <h4>Select your address</h4>
-                     </div>
-                  </div>
-             </div>
               <div className="search">
                  <input type="text" className="search"></input>
                  <i className="fas fa-search fa-lg" ></i>
               </div>
               <div>
-              
+
                  <div className="location">
                  
                      <button><img src="/Images/india.png" className="india-img dropbtn" alt=""/></button>

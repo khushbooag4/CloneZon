@@ -26,7 +26,7 @@ export const sliderItems = [
     },
   ];
   
-  export const popularProducts = [
+export const popularProducts = [
     {
       id:1,
       img:"https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
@@ -59,4 +59,27 @@ export const sliderItems = [
       id:8,
       img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
     },
-  ]
+];
+
+export const carouseldata = [
+  {
+    image:"/Images/screenshot.jpg",
+    alt:"",
+  },
+  {
+    image:"/Images/screenshot1.jpg",
+    alt:"",
+  },
+  {
+    image:"/Images/screenshot2.jpg",
+    alt:"",
+  },
+  {
+    image:"/Images/screenshot4.jpg",
+    alt:"",
+  },
+  {
+    image:"/Images/screenshot5.jpg",
+    alt:"",
+  },
+]

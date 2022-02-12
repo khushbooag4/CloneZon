@@ -5,6 +5,8 @@ import SignIn from './components/auth/SignIn';
 import Register from './components/register/Register';
 import ScrollButton from './components/utils/ScrollButton';
 import Error from './components/Mainsection/Error';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallBack from './components/utils/ErrorBoudaries';
 import Newsletter from './components/utils/NewsLetter';
 import './App.css';
 
@@ -37,9 +39,11 @@ function Home() {
     <div>
       <Navbar />
        <div className="header">
+         <ErrorBoundary FallbackComponent={ErrorFallBack} onReset = { () => {}}>
            <Suspense fallback={ <div>Loading....</div>}>
                <Header />
            </Suspense>
+        </ErrorBoundary>
        </div>
       </div>
   );
