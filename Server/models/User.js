@@ -38,11 +38,15 @@ UserSchema.pre('save' ,async function(next){
 //Token
 UserSchema.method.generateAuthToken = async function(){
    try {
-       let token = jwt.sign({_id : this._id}, process.env.SECRET_KEY ,async(err,token) => {
-       this.tokens = this.token.concat({token : token});
-       await this.save();
-       return token;
-       })
+       let token = jwt.sign(
+         { _id: this._id },
+         "4H699958924EBF5752RAA4B19393E",
+         async (err, token) => {
+           this.tokens = this.token.concat({ token: token });
+           await this.save();
+           return token;
+         }
+       );
    } catch (err) {
        console.error(err);
    }
