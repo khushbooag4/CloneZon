@@ -16,5 +16,12 @@ app.use(cookieParser());
 app.get('/', (req, res) => res.send('Hello World!'))
 app.listen(port, () => console.log(`App listening on port ${port}!`))
 
-//Routes
-app.use('/',require('./routes/route'));
+if (process.env.NODE_ENV === "production"){
+    app.use(express.static("client/build"));
+    const path = require("path");
+    app.get("*", (req,res) => {
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+    })
+}
+  //Routes
+  app.use("/", require("./routes/route"));

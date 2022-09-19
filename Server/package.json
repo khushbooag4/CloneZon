@@ -4,16 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client-install": "cd client && npm install",
-    "start": "nodemon index.js",
-    "server": "cd server && npm start",
-    "client": "cd client && npm start",
-    "dev": "concurrently \"npm run client\" \"npm run server\""
+    "start": "node index.js",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "14.15.4"
+    "node": "16.15.0"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
