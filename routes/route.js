@@ -49,15 +49,20 @@ router.post("/login", async (req, res) => {
       passwordValidate(password)
     ) {
       const userLogin = await User.findOne({ email: email });
+      console.log(userLogin , "data")
       if (userLogin) {
         const isMatch = await bcrypt.compare(password, userLogin.password);
         if (!isMatch) {
           res.status(200).send("Enter Correct Login Details");
         }
         //Token for JWT
-        const token = jwt.sign({ userLogin }, "secretKey", (err, token) => {
-          console.log({ token: token });
-        });
+        const token = jwt.sign(
+          { userLogin },
+          "4H699958924EBF5752RAA4B19393E",
+          (err, token) => {
+            console.log({ token: token });
+          }
+        );
         res.cookie("jwttoken", token, {
           //  expires = new Date(Date.now() + 2798000000),
           httpOnly: true,
