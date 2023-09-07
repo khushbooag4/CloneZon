@@ -16,8 +16,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   confirmpassword: {
-    type: String,
-    required: true,
+    type: String
   },
   tokens: [
     {
@@ -31,7 +30,7 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
-  this.confirmpassword = await bcrypt.hash(this.confirmpassword, 10);
+//   this.confirmpassword = await bcrypt.hash(this.confirmpassword, 10);
   next();
 });
 
